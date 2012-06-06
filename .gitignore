@@ -1,0 +1,7 @@
+/* ZendStudio generated files */
+.buildpath
+.project
+.settings/
+
+/* Uploaded file*/
+data/upload/images/*
