@@ -3,5 +3,13 @@
 .project
 .settings/
 
+/* Other tool gererated files */
+.svn
+.cvs
+*~
+#~#
+
 /* Uploaded file*/
-data/upload/images/*
+data/upload/images
+
+
