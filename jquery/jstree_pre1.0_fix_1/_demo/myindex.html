@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jsTree v.1.0 - Demo</title>
+	<script type="text/javascript" src="../_lib/jquery.js"></script>
+	<script type="text/javascript" src="../_lib/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../_lib/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="../jquery.jstree.js"></script>
+	<link type="text/css" rel="stylesheet" href="../_docs/syntax/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="../_docs/!style.css"/>
+	<script type="text/javascript" src="../_docs/syntax/!script.js"></script>
+</head>
+
+<body>
+
+<h2>PHP &amp; mySQL demo + event order</h2>
+
+<div id="demo" class="demo" style="height:200px;"></div>
+<script type="text/javascript">
+$(function(){
+	$("#demo")
+		.jstree({
+			"plugins": [
+				"themes", "json_data", "ui", "crrm", "cookies", "dnd", "search", "types", "hotkeys", "contextmenu"            
+			],
+			"json_data": {
+				"ajax": {
+					"url": "./server.php",
+					"data": function(node){
+						return {
+							"operation": "get_children",
+							"id": node.attr ? node.attr("id").replace("node_", "") : 1
+						};
+					}
+				}
+			},
+			"types": {
+				"types": {
+					"default": {
+						"icon": {
+							"image": "./file.png"
+						}
+					},
+					"folder": {
+						"icon": {
+							"image": "./folder.png"
+						}
+					},
+					"drive": {
+						"icon": {
+							"image": "./root.png"
+						}
+					}
+				}
+			}
+		});
+});
+</script>
+
+</div>
+
+</body>
+</html>

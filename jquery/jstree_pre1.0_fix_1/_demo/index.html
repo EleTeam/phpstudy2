@@ -14,32 +14,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	<script type="text/javascript" src="../_docs/syntax/!script.js"></script>
 </head>
 <body id="demo_body">
-<div id="container">
 
 <h2>PHP &amp; mySQL demo + event order</h2>
-<div id="description">
-	<p>Here is a PHP &amp; mySQL enabled demo. You can use the classes/DB structure included, but those are not thoroughly tested and not officially a part of jstree. In the log window you can also see all function calls as they happen on the instance.</p>
-	<div id="mmenu" style="height:30px; overflow:auto;">
-		<input type="button" id="add_folder" value="add folder" style="display:block; float:left;"/>
-		<input type="button" id="add_default" value="add file" style="display:block; float:left;"/>
-		<input type="button" id="rename" value="rename" style="display:block; float:left;"/>
-		<input type="button" id="remove" value="remove" style="display:block; float:left;"/>
-		<input type="button" id="cut" value="cut" style="display:block; float:left;"/>
-		<input type="button" id="copy" value="copy" style="display:block; float:left;"/>
-		<input type="button" id="paste" value="paste" style="display:block; float:left;"/>
-		<input type="button" id="clear_search" value="clear" style="display:block; float:right;"/>
-		<input type="button" id="search" value="search" style="display:block; float:right;"/>
-		<input type="text" id="text" value="" style="display:block; float:right;" />
-	</div>
-	
 	<!-- the tree container (notice NOT an UL node) -->
 	<div id="demo" class="demo" style="height:200px;"></div>
-	<div style="height:30px; text-align:center;">
-		<input type="button" style='width:170px; height:24px; margin:5px auto;' value="reconstruct" onclick="$.get('./server.php?reconstruct', function () { $('#demo').jstree('refresh',-1); });" />
-		<input type="button" style='width:170px; height:24px; margin:5px auto;' id="analyze" value="analyze" onclick="$('#alog').load('./server.php?analyze');" />
-		<input type="button" style='width:170px; height:24px; margin:5px auto;' value="refresh" onclick="$('#demo').jstree('refresh',-1);" />
-	</div>
-	<div id='alog' style="border:1px solid gray; padding:5px; height:100px; margin-top:15px; overflow:auto; font-family:Monospace;"></div>
 	
 	<!-- JavaScript neccessary for the tree -->
 	<script type="text/javascript" class="source below">
@@ -70,7 +48,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 						// the result is fed to the AJAX request `data` option
 						return { 
 							"operation" : "get_children", 
-							"id" : n.attr ? n.attr("id").replace("node_","") : 1 
+							"id" : n.attr ? n.attr("id").replace("node_", "") : 1 
 						}; 
 					}
 				}
@@ -234,30 +212,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	
 	});
 	</script>
-	<script type="text/javascript" class="source below">
-	// Code for the menu buttons
-	$(function () { 
-		$("#mmenu input").click(function () {
-			switch(this.id) {
-				case "add_default":
-				case "add_folder":
-					$("#demo").jstree("create", null, "last", { "attr" : { "rel" : this.id.toString().replace("add_", "") } });
-					break;
-				case "search":
-					$("#demo").jstree("search", document.getElementById("text").value);
-					break;
-				case "text": break;
-				default:
-					$("#demo").jstree(this.id);
-					break;
-			}
-		});
-	});
-	</script>
-</div>
-
-
-</div>
 
 </body>
 </html>
