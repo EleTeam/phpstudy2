@@ -63,10 +63,34 @@ class SortEngine
 			}
 		}
 		
-		if (!$ascending) {
-			if (is_array($data))  $data = array_reverse($data);
-			if (is_string($data)) $data = strrev($data);
+		if (!$ascending) $data = self::_reverse($data);
+		
+		return $data;
+	}
+
+	/**
+	 * Insertion sort
+	 *
+	 * @param mix $data Either be an array or a string
+	 * @param bool $ascending
+	 * @return the sorted data
+	 * @throws \Exception
+	 */
+	public static function insertion($data, $ascending = true)
+	{
+		$count = self::_count($data);
+		
+		for ($i=1; $i<$count; $i++) {
+			$tmp = $data[$i];
+			$j = $i;
+			while ($j>0 && $tmp < $data[$j-1]) {
+				$data[$j] = $data[$j-1];
+				$j--;
+			}
+			$data[$j] = $tmp;
 		}
+		
+		if (!$ascending) $data = self::_reverse($data);
 		
 		return $data;
 	}
@@ -91,6 +115,23 @@ class SortEngine
 		}
 		
 		return $count;
+	}
+
+	/**
+	 * Reverse a string or an array
+	 * 
+	 * @param mix $data
+	 * @return mix The reversed data
+	 * @throws \Exception
+	 */
+	protected static function _reverse($data)
+	{
+		if (!is_array($data) && !is_string($data)) {
+			throw new \Exception('The passed data must be an array or a string');
+		}
+		
+		if (is_array($data))  return array_reverse($data);
+		if (is_string($data)) return strrev($data);
 	}
 	
 }
