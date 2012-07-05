@@ -1,0 +1,48 @@
+PCRE: Perl Compatible Regular Expressions, http://www.pcre.org/pcre.txt
+
+Pattern Syntax: http://cn.php.net/manual/en/reference.pcre.pattern.syntax.php
+
+Meta: 
+	A prefix to indicate a concept which is an abstraction from another concept, used to complete or add to the latter.
+	http://searchsqlserver.techtarget.com/definition/meta
+
+Operations:
+	Boolean or "|": Vertical bar separates alternatives.
+	Grouping Parentheses "()": Define the scope and precedence of the operators.
+	Quantification:
+		Questions mark "?": Zero or one preceding element. 
+		Asterisk "*": Zero or more preceding element.
+		Plus sign "+": One or more preceding element.
+		
+Regex syntax:
+	Delimiters:
+		Pattern is enclosed by delimiters.
+		A delimiter can be any non-alphanumeric, non-backslash, non-whitespace character. 
+	Meta-characters:
+		Does not stand for themselves but instead are interpreted in some special way. 
+		Two different sets of meta-characters: 
+			Outside square brackets.
+			Inside square brackets.
+			
+Meta-characters:
+	Outside square brackets:
+		\	Escape character
+		^	Start of subject
+		$	End of subject
+		.	Match any characters except newline
+		[	Start character class definition
+		]	End character class definition
+		|	Start of alternative branch
+		(	Start subpattern
+		) 	End subpattern
+		?	Zero or one quantifier
+		* 	Zero or more quantifier
+		+	One or more quantifier
+		{	Start min,max quantifier
+		} 	End min,max quantifier
+	Inside square brackets, is called "character class", the only meta-characters are:
+		\	Escape character
+		^	Negate the class, but only if the first character
+		-	Indicates character range
+
+		
