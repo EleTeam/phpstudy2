@@ -5,7 +5,7 @@ require_once 'Algorithm/Engine/SortEngine.php';
 use Algorithm\Engine\SortEngine;
 
 $array = array(0, 3, 2, 4, 1);
-// $array = '3241';
+$array = '873457560132413678310967823129605';
 // $array = array('c', 'b', 'd', 'a');
 // $array = 'cbda';
 
