@@ -1,6 +1,7 @@
-PCRE: Perl Compatible Regular Expressions, http://www.pcre.org/pcre.txt
-
-Pattern Syntax: http://cn.php.net/manual/en/reference.pcre.pattern.syntax.php
+PCRE: Perl Compatible Regular Expressions
+	http://www.regular-expressions.info
+	http://www.pcre.org/pcre.txt
+	http://cn.php.net/manual/en/book.pcre.php
 
 Meta: 
 	A prefix to indicate a concept which is an abstraction from another concept, used to complete or add to the latter.
@@ -23,26 +24,83 @@ Regex syntax:
 		Two different sets of meta-characters: 
 			Outside square brackets.
 			Inside square brackets.
-			
-Meta-characters:
-	Outside square brackets:
-		\	Escape character
-		^	Start of subject
-		$	End of subject
-		.	Match any characters except newline
-		[	Start character class definition
-		]	End character class definition
-		|	Start of alternative branch
-		(	Start subpattern
-		) 	End subpattern
-		?	Zero or one quantifier
-		* 	Zero or more quantifier
-		+	One or more quantifier
-		{	Start min,max quantifier
-		} 	End min,max quantifier
-	Inside square brackets, is called "character class", the only meta-characters are:
-		\	Escape character
-		^	Negate the class, but only if the first character
-		-	Indicates character range
 
+Single-character quantifiers:
+	? 	equivalent to {0,1}
+	* 	equivalent to {0,}
+	+ 	equivalent to {1,}
+	
+
+Pattern Syntax: http://cn.php.net/manual/en/reference.pcre.pattern.syntax.php
+			
+Meta-characters: 
+	Outside square brackets:
+		\	Backslash, 		Escape character
+		^	Circumflex, 	Start of subject
+		$	Dollar, 			End of subject
+		.	Dot, 			Match any characters except newline
+		[	Square bracket, Start character class definition
+		]	Square bracket, End character class definition
+		|	Vertical bar,   Start of alternative branch
+		(	Parenthese,		Start subpattern
+		) 	Parenthese,		End subpattern
+		?	Question mark,	Zero or one quantifier
+		* 	Asterisk,		Zero or more quantifier
+		+	Plus sign,		One or more quantifier
+		{	Curlly bracket, Start min,max quantifier, repetition operator
+		} 	Curlly bracket, End min,max quantifier, repetition operator
+	Inside square brackets, is called "character class", the only meta-characters are:
+		\	Backslash,		Escape character
+		^	Circumflex,  Negate the class, but only if the first character
+		-	Dash,			Indicates character range
+		
+Escape sequences "\", has Fourth uses:
+	First, it's followed by a meta-character, it takes away any special meaning that character may have:
+		\*, \^, \-, \\
+	Second, provides a way of encoding non-printing characters in patterns in a visible manner:
+		\a		Alarm, BEL character
+		\e 		Escape
+		\n		Newline
+		\r		Carriage return
+		\t		Tab
+		\cx		Controll-x, where x is any character
+		\p{xx}	A character with the xx property
+		\P{XX}	A character without the xx property
+		\xhh	Character with hex code hh
+		\ddd	Character with octal code ddd
+	Third, specifying generic character types:
+		\d		Any decimal digit
+		\D		Any character that is not a decimal digit
+		\h		Any horizontal whitespace character
+		\H		Any character that is not a horizontal whitespace character
+		\v		Any vertical whitespace character
+		\V		Any character that is not a vertical whitespace character
+		\s		Any whitespace character
+		\S		Any character that is not a whitespace character
+		\w		Any "word" character
+		\W		Any "non-word" character
+	Fourth, simple assertions:
+		\b		Word boundary
+		\B		Not a word boundary
+		\A		Start of subject (independent of multiline mode)
+		\Z		End of subject or newline at end (independent of multiline mode) 
+		\z		End of subject (independent of multiline mode)
+		\G		First matching position in subject		
+	
+"line break" is ill-defined:
+	-- Windows uses CR+LF (\r\n)
+	-- Linux LF (\n)
+	-- OSX CR (\r)
+
+Pattern Modifiers:
+	i (PCRE_CASELESS)		Case-insensitive
+	m (PCRE_MULTILINE)		Multiline
+	s (PCRE_DOTALL)			A dot metacharacter in the pattern matches all characters
+	e (PREG_REPLACE_EVAL)	If this modifier is set, preg_replace() does normal substitution of backreferences in the replacement string, evaluates it as PHP code, and uses the result for replacing the search string. Use of this modifier is discouraged, as it can easily introduce security vulnerabilites. 
+	A (PCRE_ANCHORED)
+	u (PCRE_UTF8)
+	
+Round Brackets Create a Backreference, http://www.regular-expressions.info/brackets.html.
+	If you do not use the backreference, you can optimize this regular expression into Set(?:Value),
+	The colon indicates that the change we want to make is to turn off capturing the backreference.
 		
