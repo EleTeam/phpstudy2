@@ -37,7 +37,7 @@ Meta-characters:
 	Outside square brackets:
 		\	Backslash, 		Escape character
 		^	Circumflex, 	Start of subject
-		$	Dollar, 			End of subject
+		$	Dollar, 		End of subject
 		.	Dot, 			Match any characters except newline
 		[	Square bracket, Start character class definition
 		]	Square bracket, End character class definition
@@ -99,8 +99,18 @@ Pattern Modifiers:
 	e (PREG_REPLACE_EVAL)	If this modifier is set, preg_replace() does normal substitution of backreferences in the replacement string, evaluates it as PHP code, and uses the result for replacing the search string. Use of this modifier is discouraged, as it can easily introduce security vulnerabilites. 
 	A (PCRE_ANCHORED)
 	u (PCRE_UTF8)
+
+Subpatterns:
+	1, It localizes a set of alternatives.
+	2, It sets up the subpattern as a capturing subpattern.
+		(?:pattern), 	   Does not do any capturing.
+		(?P<name>pattern), Names a subpattern.
+		(?|(p1)|(p2))pat), Allows having duplicate numbers, "p1", "p2" would be stored in backreference 1. 
 	
 Round Brackets Create a Backreference, http://www.regular-expressions.info/brackets.html.
 	If you do not use the backreference, you can optimize this regular expression into Set(?:Value),
 	The colon indicates that the change we want to make is to turn off capturing the backreference.
+
+
+
 		

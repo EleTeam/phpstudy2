@@ -1,4 +1,5 @@
 <?php
+echo '<pre>';
 /**
  * Working with URL
  */
@@ -21,3 +22,9 @@ preg_match($pattern, $url, $matches);
 echo "Last part is: {$matches[0]} <br />";
 
 // Using named subpattern
+$pattern = '#^(?P<protocol>http)?(?:://)?(?P<host>[^/]+)#i';
+preg_match($pattern, $url, $matches);
+print_r($matches);
+
+
+
